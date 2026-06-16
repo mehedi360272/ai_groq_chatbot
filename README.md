@@ -2,15 +2,13 @@
 
 Groq API ব্যবহার করে Odoo 18 এ AI Chatbot।
 
-## ইনস্টলেশন
+## installation
 
 ```bash
-# 1. addons folder এ কপি করুন
-cp -r ai_groq_chatbot /path/to/odoo/addons/
 
-# 2. Odoo restart
+# 1. Odoo restart
 sudo systemctl restart odoo
-# অথবা
+# or
 python odoo-bin -u ai_groq_chatbot -d your_database
 ```
 
@@ -24,12 +22,12 @@ python odoo-bin -u ai_groq_chatbot -d your_database
    - System Prompt কাস্টমাইজ করুন
 4. **Save** করুন
 
-## System Prompt উদাহরণ
+## System Prompt Example
 
 ```
-আপনি একটি বাংলাদেশী কোম্পানির Odoo 18 ERP সহকারী।
-বাংলা ও ইংরেজি উভয় ভাষায় সাহায্য করুন।
-সংক্ষিপ্ত ও স্পষ্ট উত্তর দিন।
+You are an Odoo 18 ERP assistant for a Bangladeshi company.
+Please help in both Bengali and English.
+Please give short and clear answers.
 ```
 
 ## Odoo Version
