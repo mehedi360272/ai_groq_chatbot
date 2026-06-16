@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ai_chat_history_user,ai.chat.history user,model_ai_chat_history,base.group_user,1,1,1,0
+access_ai_chat_history_manager,ai.chat.history manager,model_ai_chat_history,base.group_system,1,1,1,1
+access_ai_chat_message_user,ai.chat.message user,model_ai_chat_message,base.group_user,1,1,1,0
+access_ai_chat_message_manager,ai.chat.message manager,model_ai_chat_message,base.group_system,1,1,1,1
+access_groq_service,groq.service,model_groq_service,base.group_user,1,0,0,0
+access_odoo_report_service,odoo.report.service,model_odoo_report_service,base.group_user,1,0,0,0

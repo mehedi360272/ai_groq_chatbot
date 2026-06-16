@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="ai_chat_history_list_view" model="ir.ui.view">
+        <field name="name">ai.chat.history.list</field>
+        <field name="model">ai.chat.history</field>
+        <field name="arch" type="xml">
+            <list string="Chat Sessions" decoration-muted="not active">
+                <field name="create_date" string="Time"/>
+                <field name="user_id" string="User"/>
+                <field name="session_id" string="Session ID"/>
+                <field name="message_count" string="Messages"/>
+                <field name="active" widget="boolean_toggle"/>
+                <button name="action_view_messages" type="object"
+                        string="View Messages" icon="fa-comments"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="ai_chat_history_form_view" model="ir.ui.view">
+        <field name="name">ai.chat.history.form</field>
+        <field name="model">ai.chat.history</field>
+        <field name="arch" type="xml">
+            <form string="Chat Session">
+                <sheet>
+                    <group>
+                        <field name="user_id"/>
+                        <field name="session_id"/>
+                        <field name="create_date" readonly="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Messages">
+                            <field name="message_ids">
+                                <list>
+                                    <field name="create_date" string="Time"/>
+                                    <field name="role" string="Role"/>
+                                    <field name="content" string="Message"/>
+                                    <field name="tokens_used" string="Tokens"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ai_chat_history" model="ir.actions.act_window">
+        <field name="name">Chat History</field>
+        <field name="res_model">ai.chat.history</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_ai_chatbot_root" name="AI Chatbot" sequence="100"/>
+    <menuitem id="menu_ai_chat_history" name="Chat History"
+              parent="menu_ai_chatbot_root"
+              action="action_ai_chat_history" sequence="10"/>
+</odoo>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="ai_groq_chatbot.ChatbotWidget">
+
+    <!-- Systray Button -->
+    <div class="o_ai_chatbot_systray" t-on-click="toggleChat" title="AI Chatbot">
+        <span class="o_ai_chatbot_systray_btn">AI </span>
+        <t t-if="state.messages.length > 1">
+            <span class="o_ai_chatbot_badge" t-esc="state.messages.length - 1"/>
+        </t>
+    </div>
+
+    <!-- Chat Window -->
+    <t t-if="state.isOpen">
+        <div class="o_ai_chatbot_window">
+
+            <!-- Header -->
+            <div class="o_ai_chatbot_header">
+                <div class="o_ai_chatbot_header_info">
+                    <div class="o_ai_chatbot_avatar">
+                        <span style="font-size:16px; font-weight:500;">AI</span>
+                    </div>
+                    <div>
+                        <div class="o_ai_chatbot_title">AI Assistant</div>
+                        <div class="o_ai_chatbot_status">
+                            <t t-if="state.isLoading">
+                                <span class="o_ai_chatbot_status_dot loading"/>Thinking...
+                            </t>
+                            <t t-else="">
+                                <span class="o_ai_chatbot_status_dot online"/>Active
+                            </t>
+                        </div>
+                    </div>
+                </div>
+                <div class="o_ai_chatbot_header_actions">
+                    <button t-on-click="clearChat" title="Clear Chat" class="o_ai_chatbot_btn_icon">
+                        <i class="fa fa-trash-o" aria-hidden="true"/>
+                    </button>
+                    <button t-on-click="toggleChat" title="Close" class="o_ai_chatbot_btn_icon">
+                        <i class="fa fa-times" aria-hidden="true"/>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Messages -->
+            <div class="o_ai_chatbot_messages" t-ref="messages">
+                <t t-foreach="state.messages" t-as="msg" t-key="msg_index">
+                    <div t-attf-class="o_ai_chatbot_msg o_ai_chatbot_msg_{{msg.role}}">
+                        <t t-if="msg.role === 'assistant'">
+                            <div class="o_ai_chatbot_msg_avatar_sm">
+                                <span style="font-size:11px; font-weight:500;">AI</span>
+                            </div>
+                        </t>
+                        <div class="o_ai_chatbot_msg_bubble">
+                            <div class="o_ai_chatbot_msg_content" t-out="msg.html"/>
+                            <div class="o_ai_chatbot_msg_time" t-esc="msg.time"/>
+                        </div>
+                    </div>
+                </t>
+
+                <!-- Typing indicator -->
+                <t t-if="state.isLoading">
+                    <div class="o_ai_chatbot_msg o_ai_chatbot_msg_assistant">
+                        <div class="o_ai_chatbot_msg_avatar_sm">
+                            <span style="font-size:11px; font-weight:500;">AI</span>
+                        </div>
+                        <div class="o_ai_chatbot_msg_bubble">
+                            <div class="o_ai_chatbot_typing">
+                                <span/><span/><span/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+
+                <!-- Error -->
+                <t t-if="state.error">
+                    <div class="o_ai_chatbot_error">
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true"/>
+                        <t t-esc="state.error"/>
+                    </div>
+                </t>
+            </div>
+
+            <!-- Quick Report Buttons -->
+            <t t-if="state.showQuickReports and !state.isLoading">
+                <div class="o_ai_chatbot_quick_reports">
+                    <div class="o_ai_chatbot_quick_label">Short Report:</div>
+                    <div class="o_ai_chatbot_quick_btns">
+                        <t t-foreach="quickReports" t-as="qr" t-key="qr.keyword">
+                            <button
+                                class="o_ai_chatbot_quick_btn"
+                                t-on-click="() => this.onQuickReport(qr.keyword)"
+                                t-esc="qr.label"
+                            />
+                        </t>
+                    </div>
+                </div>
+            </t>
+
+            <!-- Input -->
+            <div class="o_ai_chatbot_input_area">
+                <textarea
+                    class="o_ai_chatbot_input"
+                    t-model="state.inputText"
+                    t-on-keydown="onKeyDown"
+                    placeholder="Write here..."
+                    rows="1"
+                    t-att-disabled="state.isLoading"
+                />
+                <button
+                    class="o_ai_chatbot_send"
+                    t-on-click="sendMessage"
+                    t-att-disabled="!state.inputText.trim() or state.isLoading"
+                    title="Send"
+                >
+                    <i class="fa fa-paper-plane" aria-hidden="true"/>
+                </button>
+            </div>
+
+        </div>
+    </t>
+</t>
+
+</templates>

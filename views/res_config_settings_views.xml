@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_config_settings_view_ai_chatbot" model="ir.ui.view">
+        <field name="name">res.config.settings.view.ai.chatbot</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app string="AI Chatbot" name="ai_groq_chatbot" groups="base.group_system">
+                    <!--                    <setting string="Activate Chatbot" help="The AI Chat button will appear in the navbar.">-->
+                    <!--                        <field name="groq_chatbot_enabled" widget="boolean_toggle"/>-->
+                    <!--                    </setting>-->
+                    <setting>
+                        <div class="o_setting_left_pane d-flex align-items-center">
+                            <field name="groq_chatbot_enabled" class="oe_inline"/>
+                        </div>
+                            <label for="groq_chatbot_enabled" string="Activate Chatbot"
+                                   class="o_form_label mb-0"/>
+                            <div class="text-muted">
+                                The AI Chat button will appear in the navbar.
+                            </div>
+                    </setting>
+                    <setting string="Groq API Key"
+                             help="Take it for free from console.groq.com">
+                        <field name="groq_api_key"
+                               placeholder="gsk_xxxxxxxxxxxxxxxxxxxxxxxx"/>
+                    </setting>
+                    <setting string="AI Model" help="LLaMA 3.3 70B (Recommended)">
+                        <field name="groq_model"/>
+                    </setting>
+                    <setting string="Max Tokens"
+                             help="The maximum length of each response.">
+                        <field name="groq_max_tokens"/>
+                    </setting>
+                    <setting string="System Prompt"
+                             help="Determine the AI's personality and role.">
+                        <field name="groq_system_prompt"
+                               widget="char"
+                               style="width:100%; min-height:80px;"
+                               placeholder="You are a helpful Odoo ERP assistant."/>
+                    </setting>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>
