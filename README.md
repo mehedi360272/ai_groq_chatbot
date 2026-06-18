@@ -1,6 +1,6 @@
 # AI Groq Chatbot — Odoo 18
 
-Groq API ব্যবহার করে Odoo 18 এ AI Chatbot।
+AI Chatbot in Odoo 18 using Groq API.
 
 ## installation
 
@@ -14,13 +14,13 @@ python odoo-bin -u ai_groq_chatbot -d your_database
 
 ## Setup
 
-1. **Apps > Update Apps List** করুন
-2. "AI Groq Chatbot" search করে **Install** করুন
-3. **Settings > General Settings > AI Chatbot** section এ:
-   - Groq API Key দিন ([console.groq.com](https://console.groq.com) থেকে বিনামূল্যে)
-   - Model বেছে নিন (LLaMA 3.3 70B recommended)
-   - System Prompt কাস্টমাইজ করুন
-4. **Save** করুন
+1. Go to **Apps > Update Apps List.**
+2. search for **"AI Groq Chatbot"** and click **Install**.
+3. Navigate to **Settings > General Settings > AI Chatbot** then:
+   - Enter your Groq API Key (available for free from console.groq.com).
+   - Select a model (LLaMA 3.3 70B is recommended).
+   - Customize the System Prompt according to your requirements.
+4. Click **Save** to apply the settings.
 
 ## System Prompt Example
 
@@ -31,4 +31,4 @@ Please give short and clear answers.
 ```
 
 ## Odoo Version
-✅ Odoo 18 Community & Enterprise
+Odoo 18 Community & Enterprise
