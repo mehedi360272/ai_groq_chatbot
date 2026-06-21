@@ -19,6 +19,10 @@
             <div class="o_ai_chatbot_header">
                 <div class="o_ai_chatbot_header_info">
                     <div class="o_ai_chatbot_avatar">
+                        <img src="/ai_groq_chatbot/static/src/img/avatar.png"
+                             alt="AI Assistant"
+                             class="o_ai_chatbot_avatar_img"
+                             t-on-error="(ev) => ev.target.style.display = 'none'"/>
                         <span style="font-size:16px; font-weight:500;">AI</span>
                     </div>
                     <div>
@@ -49,6 +53,10 @@
                     <div t-attf-class="o_ai_chatbot_msg o_ai_chatbot_msg_{{msg.role}}">
                         <t t-if="msg.role === 'assistant'">
                             <div class="o_ai_chatbot_msg_avatar_sm">
+                                <img src="/ai_groq_chatbot/static/src/img/avatar.png"
+                                     alt="AI"
+                                     class="o_ai_chatbot_avatar_img"
+                                     t-on-error="(ev) => ev.target.style.display = 'none'"/>
                                 <span style="font-size:11px; font-weight:500;">AI</span>
                             </div>
                         </t>
@@ -63,6 +71,10 @@
                 <t t-if="state.isLoading">
                     <div class="o_ai_chatbot_msg o_ai_chatbot_msg_assistant">
                         <div class="o_ai_chatbot_msg_avatar_sm">
+                            <img src="/ai_groq_chatbot/static/src/img/avatar.png"
+                                 alt="AI"
+                                 class="o_ai_chatbot_avatar_img"
+                                 t-on-error="(ev) => ev.target.style.display = 'none'"/>
                             <span style="font-size:11px; font-weight:500;">AI</span>
                         </div>
                         <div class="o_ai_chatbot_msg_bubble">

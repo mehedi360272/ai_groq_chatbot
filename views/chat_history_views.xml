@@ -50,7 +50,7 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <menuitem id="menu_ai_chatbot_root" name="AI Chatbot" sequence="100"/>
+    <menuitem id="menu_ai_chatbot_root" name="AI Chatbot" sequence="100" web_icon="ai_groq_chatbot,static/description/icon.png"/>
     <menuitem id="menu_ai_chat_history" name="Chat History"
               parent="menu_ai_chatbot_root"
               action="action_ai_chat_history" sequence="10"/>
