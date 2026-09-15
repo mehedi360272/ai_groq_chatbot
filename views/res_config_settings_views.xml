@@ -25,7 +25,7 @@
                         <field name="groq_api_key"
                                placeholder="gsk_xxxxxxxxxxxxxxxxxxxxxxxx"/>
                     </setting>
-                    <setting string="AI Model" help="LLaMA 3.3 70B (Recommended)">
+                    <setting string="AI Model" help="GPT-OSS 20B (Recommended)">
                         <field name="groq_model"/>
                     </setting>
                     <setting string="Max Tokens"

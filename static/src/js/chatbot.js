@@ -44,7 +44,7 @@ class AiChatbotWidget extends Component {
             messages: [],
             sessionId: generateSessionId(),
             error: null,
-            showQuickReports: true,
+            quickReportsCollapsed: false,
         });
 
         onMounted(() => {
@@ -61,6 +61,10 @@ class AiChatbotWidget extends Component {
         return QUICK_REPORTS;
     }
 
+    toggleQuickReports() {
+        this.state.quickReportsCollapsed = !this.state.quickReportsCollapsed;
+    }
+
     toggleChat() {
         this.state.isOpen = !this.state.isOpen;
         if (this.state.isOpen) this._scrollToBottom();
@@ -75,7 +79,7 @@ class AiChatbotWidget extends Component {
 
     // Quick report button click
     async onQuickReport(keyword) {
-        this.state.showQuickReports = false;
+        this.state.quickReportsCollapsed = true;
         // User message হিসেবে show করো
         this.state.messages.push({
             role: "user",
@@ -97,7 +101,7 @@ class AiChatbotWidget extends Component {
             time: new Date().toLocaleTimeString("bn-BD", { hour: "2-digit", minute: "2-digit" }),
         });
         this.state.inputText = "";
-        this.state.showQuickReports = false;
+        this.state.quickReportsCollapsed = true;
 
         // Last 12 messages slice করে পাঠাও
         const apiMessages = this.state.messages
@@ -144,7 +148,7 @@ class AiChatbotWidget extends Component {
             await rpc("/ai_chat/clear", { session_id: this.state.sessionId });
         } catch (_) {}
         this.state.sessionId = generateSessionId();
-        this.state.showQuickReports = true;
+        this.state.quickReportsCollapsed = false;
         this.state.messages = [
             {
                 role: "assistant",

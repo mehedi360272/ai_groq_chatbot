@@ -9,19 +9,17 @@ class ResConfigSettings(models.TransientModel):
         config_parameter='ai_groq_chatbot.groq_api_key',
         groups='base.group_system',
     )
-    groq_model = fields.Selection(
-        string='AI Model',
-        selection=[
-            ('llama-3.3-70b-versatile', 'LLaMA 3.3 70B (Best)'),
-            ('llama-3.1-8b-instant', 'LLaMA 3.1 8B (First)'),
-            ('llama3-70b-8192', 'LLaMA 3 70B'),
-            ('llama3-8b-8192', 'LLaMA 3 8B'),
-            ('gemma2-9b-it', 'Gemma 2 9B'),
-            ('deepseek-r1-distill-llama-70b', 'DeepSeek R1 70B'),
-        ],
-        default='llama-3.3-70b-versatile',
-        config_parameter='ai_groq_chatbot.groq_model',
-    )
+    groq_model = fields.Selection([
+        (
+            'openai/gpt-oss-20b',
+            'GPT-OSS 20B (Fast)'
+        ),
+        (
+            'openai/gpt-oss-120b',
+            'GPT-OSS 120B (Best)'
+        ),
+    ], string='AI Model', default='openai/gpt-oss-20b')
+
     groq_system_prompt = fields.Char(
         string="System Prompt",
         config_parameter="ai_groq_chatbot.groq_system_prompt",

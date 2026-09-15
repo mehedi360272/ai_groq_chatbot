@@ -16,7 +16,10 @@ class GroqService(models.AbstractModel):
         ICP = self.env['ir.config_parameter'].sudo()
         return {
             'api_key': ICP.get_param('ai_groq_chatbot.groq_api_key', ''),
-            'model': ICP.get_param('ai_groq_chatbot.groq_model', 'llama-3.3-70b-versatile'),
+            'model': ICP.get_param(
+                'ai_groq_chatbot.groq_model',
+                'openai/gpt-oss-20b'
+            ),
             'system_prompt': ICP.get_param(
                 'ai_groq_chatbot.groq_system_prompt',
                 'You are a helpful Odoo ERP assistant.'

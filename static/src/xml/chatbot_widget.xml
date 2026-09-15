@@ -79,7 +79,9 @@
                         </div>
                         <div class="o_ai_chatbot_msg_bubble">
                             <div class="o_ai_chatbot_typing">
-                                <span/><span/><span/>
+                                <span/>
+                                <span/>
+                                <span/>
                             </div>
                         </div>
                     </div>
@@ -95,36 +97,42 @@
             </div>
 
             <!-- Quick Report Buttons -->
-            <t t-if="state.showQuickReports and !state.isLoading">
+            <t t-if="!state.isLoading">
                 <div class="o_ai_chatbot_quick_reports">
-                    <div class="o_ai_chatbot_quick_label">Short Report:</div>
-                    <div class="o_ai_chatbot_quick_btns">
-                        <t t-foreach="quickReports" t-as="qr" t-key="qr.keyword">
-                            <button
-                                class="o_ai_chatbot_quick_btn"
-                                t-on-click="() => this.onQuickReport(qr.keyword)"
-                                t-esc="qr.label"
-                            />
-                        </t>
+                    <div class="o_ai_chatbot_quick_label_row" t-on-click="toggleQuickReports">
+                        <div class="o_ai_chatbot_quick_label">Short Report:</div>
+                        <i t-attf-class="fa {{state.quickReportsCollapsed ? 'fa-chevron-down' : 'fa-chevron-up'}} o_ai_chatbot_quick_toggle"
+                           aria-hidden="true"/>
                     </div>
+                    <t t-if="!state.quickReportsCollapsed">
+                        <div class="o_ai_chatbot_quick_btns">
+                            <t t-foreach="quickReports" t-as="qr" t-key="qr.keyword">
+                                <button
+                                        class="o_ai_chatbot_quick_btn"
+                                        t-on-click="() => this.onQuickReport(qr.keyword)"
+                                        t-esc="qr.label"
+                                />
+                            </t>
+                        </div>
+                    </t>
                 </div>
             </t>
 
             <!-- Input -->
             <div class="o_ai_chatbot_input_area">
                 <textarea
-                    class="o_ai_chatbot_input"
-                    t-model="state.inputText"
-                    t-on-keydown="onKeyDown"
-                    placeholder="Write here..."
-                    rows="1"
-                    t-att-disabled="state.isLoading"
+                        class="o_ai_chatbot_input"
+                        t-model="state.inputText"
+                        t-on-keydown="onKeyDown"
+                        placeholder="Write here..."
+                        rows="1"
+                        t-att-disabled="state.isLoading"
                 />
                 <button
-                    class="o_ai_chatbot_send"
-                    t-on-click="sendMessage"
-                    t-att-disabled="!state.inputText.trim() or state.isLoading"
-                    title="Send"
+                        class="o_ai_chatbot_send"
+                        t-on-click="sendMessage"
+                        t-att-disabled="!state.inputText.trim() or state.isLoading"
+                        title="Send"
                 >
                     <i class="fa fa-paper-plane" aria-hidden="true"/>
                 </button>

@@ -317,13 +317,25 @@
     background: var(--o-gray-100, #f8f9fa);
     flex-shrink: 0;
 }
+.o_ai_chatbot_quick_label_row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    margin-bottom: 6px;
+    user-select: none;
+}
 .o_ai_chatbot_quick_label {
     font-size: 10px;
     color: #888;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    margin-bottom: 6px;
+    margin-bottom: 0;
+}
+.o_ai_chatbot_quick_toggle {
+    font-size: 11px;
+    color: #888;
 }
 .o_ai_chatbot_quick_btns {
     display: flex;
